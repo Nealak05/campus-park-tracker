@@ -1,8 +1,4 @@
-"""Unit tests for the pure domain layer.
-
-These tests need no DB, no FastAPI, no fixtures — proving that keeping
-occupancy.py free of infrastructure imports actually pays off.
-"""
+"""Unit tests for occupancy.py."""
 
 import pytest
 
@@ -43,8 +39,8 @@ class TestStatusLabel:
         [
             (0, 20, "available"),
             (10, 20, "available"),
-            (16, 20, "available"),  # 80% — below 85% threshold
-            (17, 20, "near_full"),  # 85% — at threshold
+            (16, 20, "available"),  # 80%, below 85% threshold
+            (17, 20, "near_full"),  # 85%, at threshold
             (19, 20, "near_full"),
             (20, 20, "full"),
             (21, 20, "full"),       # over capacity still reads as full
@@ -54,5 +50,4 @@ class TestStatusLabel:
         assert status_label(current, capacity) == expected
 
     def test_near_full_threshold_is_85_percent(self):
-        # Documents the constant so a future refactor doesn't silently shift it.
         assert NEAR_FULL_RATIO == 0.85

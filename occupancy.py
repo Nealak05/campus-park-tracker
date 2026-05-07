@@ -1,6 +1,6 @@
-"""Pure domain logic: validates events and labels lot status.
+"""Domain rules: event validation and lot status labels.
 
-Kept free of DB and HTTP concerns so it can be reasoned about and tested in isolation.
+No DB or HTTP imports here, so it can be unit-tested directly.
 """
 
 VALID_EVENT_TYPES = {"in", "out"}
